@@ -3,7 +3,7 @@
 
 fn inspect(s: &String) {
     if s.ends_with("s") {
-        println!("{} is plural", s)
+        println!("{} is plural", *s)
     } else {
         println!("{} is singular", s)
     }
@@ -17,6 +17,11 @@ fn change(s: &mut String) {
 
 fn eat(consumes: String) -> bool {
     consumes.starts_with("b") && consumes.contains("a")
+}
+
+fn bedazzle(s: &mut String) -> &mut String {
+    *s = String::from("sparkly");
+    s
 }
 
 fn main() {
@@ -61,8 +66,8 @@ fn main() {
     // Hint: You will need to dereference the mutable reference in order to assign it a
     // new value.
     //
-    // let mut material = "mud".to_string();
-    // println!("This material is just `{}`.", material);
-    // bedazzle(&mut material);
-    // println!("Wow! Now the material is `{}`!", material);
+    let mut material = "mud".to_string();
+    println!("This material is just `{}`.", material);
+    bedazzle(&mut material);
+    println!("Wow! Now the material is `{}`!", material);
 }
